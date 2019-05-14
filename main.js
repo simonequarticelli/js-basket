@@ -74,7 +74,7 @@ $(document).ready(function(){
     for (var field in codice_univoco) {
       stampa += codice_univoco[field] + '<br>';
     }
-    $('.proprieta').append(stampa);
+    $('.proprieta').html(stampa).css('color', 'orange');
 
   });
 
