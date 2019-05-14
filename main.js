@@ -17,7 +17,7 @@ $(document).ready(function(){
   //creo array alfabeto
   var array_alfabeto = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z"];
 
-  //array codice Giocatore
+
   var codice_1 = [];
 
   for (var i = 0; i < 3; i++) {
@@ -59,9 +59,9 @@ $(document).ready(function(){
   $('.oggetti').append('<li><a href="#">' + codice_univoco + '</a></li>');
 
   var codice_univoco = {
-      'punti fatti': random(0, 200),
-      'rinbalzi': random(0, 500),
-      'falli': random(0, 100),
+      'punti fatti': random(0, 40),
+      'rinbalzi': random(0, 200),
+      'falli': random(0, 5),
       'tiri da 2 punti(%)': (Math.random()*100).toFixed(1),
        'tiri da 3 punti(%)': (Math.random()*100).toFixed(1)
     };
