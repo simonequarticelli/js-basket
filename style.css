@@ -23,6 +23,9 @@ body{
   text-decoration: none;
   color:white;
 }
+.oggetti a:hover{
+  color:orange;
+}
 li {
   list-style-type: none;
 }

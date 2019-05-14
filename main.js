@@ -14,15 +14,18 @@
 
 $(document).ready(function(){
 
-  //creo array alfabeto
+  function player(){
+
+  //array alfabeto
   var array_alfabeto = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","U","V","W","X","Y","Z"];
 
-
+  //array dove fare il push delle 3 lettere
   var codice_1 = [];
 
   for (var i = 0; i < 3; i++) {
+    //creo var per generare lettere
     var lettera = array_alfabeto[Math.floor(Math.random()*array_alfabeto.length)];
-
+    //controllo che non ci siano doppioni di lettere e faccio il push
     if (codice_1.includes(lettera) == false){
       codice_1.push(lettera);
     }
@@ -30,12 +33,13 @@ $(document).ready(function(){
 
   //console.log(codice_1.join(''));
 
+  //array dove fare il push dei 3 numeri
   var codice_2 = [];
 
   for (var i = 0; i < 3; i++) {
     //creo var per generare numeri
     var num_random = Math.floor(Math.random()*9);
-
+    //controllo che non ci siano doppioni di numeri e faccio il push
     if (codice_2.includes(num_random) == false){
       codice_2.push(num_random);
     }
@@ -43,12 +47,21 @@ $(document).ready(function(){
 
   //console.log(codice_2.join(''));
 
-  var lettere_3 = codice_1;
-  var numeri_3 = codice_2;
-
-  var codice_univoco = lettere_3.join('')+numeri_3.join('');
+  var codice_univoco = codice_1.join('') + codice_2.join('');
 
   //console.log(codice_univoco);
+  var giocatore = {
+    'nome': codice_univoco,
+    'punti fatti': random(0, 40),
+    'rinbalzi': random(0, 200),
+    'falli': random(0, 5),
+    'tiri da 2 punti(%)': (Math.random()*100).toFixed(1),
+    'tiri da 3 punti(%)': (Math.random()*100).toFixed(1)
+  };
+
+  return giocatore;
+}
+
 
   //creo funzione per generare numeri casuali
   function random(min, max){
@@ -56,36 +69,28 @@ $(document).ready(function(){
     return random_number;
   }
 
-  $('.oggetti').append('<li><a href="#">' + codice_univoco + '</a></li>');
+  var test = [];
 
-  var codice_univoco = {
-      'punti fatti': random(0, 40),
-      'rinbalzi': random(0, 200),
-      'falli': random(0, 5),
-      'tiri da 2 punti(%)': (Math.random()*100).toFixed(1),
-       'tiri da 3 punti(%)': (Math.random()*100).toFixed(1)
-    };
+  for (var i = 0; i < 3; i++) {
+    var prova = player();
+    $('.oggetti').append('<li><a data-numero = "' + i + '" href="#">' + prova.nome + '</a></li>');
+    test.push(prova);
 
+  }
 
-  //console.log(codice_univoco);
+    //console.log(codice_univoco);
 
   $('a').click(function(){
+
+    var numero_dat = $(this).attr('data-numero'); //<-- indice del giocatore all'interno dell'array test
+    var giocatore = test[numero_dat];
     var stampa = '';
-    for (var field in codice_univoco) {
-      stampa += codice_univoco[field] + '<br>';
+    for (var field in giocatore) {
+      stampa += giocatore[field] + '<br>';
     }
+
     $('.proprieta').html(stampa).css('color', 'orange');
 
   });
-
-
-
-
-
-
-
-
-
-
 
 });
