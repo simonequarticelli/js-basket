@@ -17,7 +17,11 @@ body{
   text-align: right;
 }
 .proprieta{
-  text-align: left;
+  text-align: right;
+}
+.proprieta a{
+  color:orange;
+  text-decoration: none;
 }
 .oggetti a{
   text-decoration: none;

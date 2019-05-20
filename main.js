@@ -52,11 +52,11 @@ $(document).ready(function(){
   //console.log(codice_univoco);
   var giocatore = {
     'nome': codice_univoco,
-    'punti fatti': random(0, 40),
+    'punti_fatti': random(0, 40),
     'rinbalzi': random(0, 200),
     'falli': random(0, 5),
-    'tiri da 2 punti(%)': (Math.random()*100).toFixed(1),
-    'tiri da 3 punti(%)': (Math.random()*100).toFixed(1)
+    'tiri_da_2_punti': (Math.random()*100).toFixed(1),
+    'tiri_da_3_punti': (Math.random()*100).toFixed(1)
   };
 
   return giocatore;
@@ -71,9 +71,38 @@ $(document).ready(function(){
 
   var test = [];
 
-  for (var i = 0; i < 3; i++) {
+  for (var i = -1; i < 3; i++) {
+
+    //preparo variabile per poi applicarla
+    var context = {
+      'code': code,
+      'indice': i,
+    }
+    //console.log(context);
+
+    //PREPARAZIONE TEMPLATE
+
+    //salvo il template dentro a una variabile
+    var template__codici = $('#template__code').html();
+    //console.log(template__codici);
+
+    //richiamo il compile
+    var template__function = Handlebars.compile(template__codici);
+    //console.log(template__function);
+
+    var html = template__function(context);
+    //console.log(html);
+
+    $('.oggetti').append(html);
+
     var prova = player();
-    $('.oggetti').append('<li><a data-numero = "' + i + '" href="#">' + prova.nome + '</a></li>');
+
+    var code = prova.nome;
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    // $('.oggetti').appen('<li><a data-numero = "' + i + '" href="#">' + prova.nome + '</a></li>');
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
     test.push(prova);
 
   }
@@ -86,11 +115,40 @@ $(document).ready(function(){
     var giocatore = test[numero_dat];
     var stampa = '';
     for (var field in giocatore) {
-      stampa += giocatore[field] + '<br>';
+      stampa += giocatore[field];
+
     }
 
-    $('.proprieta').html(stampa).css('color', 'orange');
+    //PREPARAZIONE TEMPLATE
 
+    //salvo il template dentro a una variabile
+    var template__numeri = $('#template__number').html();
+    //console.log(template__codici);
+
+    //richiamo il compile
+    var template__function = Handlebars.compile(template__numeri);
+    //console.log(template__function);
+
+    //preparo variabile per poi applicarla
+    var context = {
+      'data': numero_dat,
+      'statistiche_1': giocatore.nome,
+      'statistiche_2': giocatore.punti_fatti,
+      'statistiche_3': giocatore.rinbalzi,
+      'statistiche_4': giocatore.falli,
+      'statistiche_5': giocatore.tiri_da_2_punti,
+      'statistiche_6': giocatore.tiri_da_3_punti,
+    }
+    console.log(context);
+
+    var html = template__function(context);
+    //console.log(html);
+
+    $('.proprieta').html(html);
+
+    ///////////////////////////////////////////////////
+    // $('.proprieta').html(stampa).css('color', 'orange');
+    ///////////////////////////////////////////////////
   });
 
 });

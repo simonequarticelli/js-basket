@@ -4,21 +4,39 @@
     <meta charset="utf-8">
     <title>js-basket</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js" charset="utf-8"></script>
     <script src="main.js" charset="utf-8"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+
+
     <div class="oggetti"></div>
-    <div class="nomi">
+
+    <div class="proprieta"></div>
+
+    <!-- <div class="nomi">
       nome: <br>
       punti fatti: <br>
       rinbalzi: <br>
       falli: <br>
       tiri da 2 punti(%): <br>
       tiri da 3 punti(%):
-    </div>
-    <div class="proprieta"></div>
+    </div> -->
+
+    <script id = "template__number" data-numero = "{{ data }}" type = "text/x-handlebars-template">
+      nome: <a href="#">{{ statistiche_1 }}</a> <br>
+      punti fatti: <a href="#">{{ statistiche_2 }}</a> <br>
+      rinbalzi: <a href="#">{{ statistiche_3 }}</a> <br>
+      falli: <a href="#">{{ statistiche_4 }}</a> <br>
+      tiri da 2 punti(%): <a href="#">{{ statistiche_5 }}</a> <br>
+      tiri da 3 punti(%): <a href="#">{{ statistiche_6 }}</a>
+    </script>
+
+    <script id = "template__code" type = "text/x-handlebars-template">
+      <ul><a data-numero = "{{indice}}" href="#">{{ code }}</a></ul>
+    </script>
 
   </body>
 </html>
