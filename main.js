@@ -71,7 +71,11 @@ $(document).ready(function(){
 
   var test = [];
 
-  for (var i = -1; i < 3; i++) {
+  var prova = player();
+
+  var code = prova.nome;
+
+  for (var i = 0; i < 3; i++) {
 
     //preparo variabile per poi applicarla
     var context = {
